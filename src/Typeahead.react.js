@@ -148,6 +148,14 @@ const Typeahead = createReactClass({
      * Propagate <RETURN> event to parent form.
      */
     submitFormOnEnter: PropTypes.bool,
+    /**
+     * Invoked when the enter key pressed.
+     */
+    handleEnterKeyPress: PropTypes.func,
+    /**
+    * Hide menu if no results found
+    */
+    hideMenuIfNoResults: PropTypes.bool,
   },
 
   getDefaultProps() {
@@ -174,6 +182,7 @@ const Typeahead = createReactClass({
       paginate: true,
       selected: [],
       submitFormOnEnter: false,
+      hideMenuIfNoResults: false,
     };
   },
 
@@ -279,7 +288,7 @@ const Typeahead = createReactClass({
         style={{position: 'relative'}}>
         {this._renderInput(results)}
         {this._renderAux()}
-        {this._renderMenu(results, shouldPaginate)}
+        {hideMenuIfNoResults && results.length === 0 && this._renderMenu(results, shouldPaginate)}
       </div>
     );
   },
@@ -588,6 +597,9 @@ const Typeahead = createReactClass({
 
     onChange(selected);
     onInputChange(text);
+    if (menuSelectHandler) {
+      menuSelectHandler(selected);
+    }
   },
 
   _handlePagination(e) {
