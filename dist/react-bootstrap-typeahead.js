@@ -3452,6 +3452,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (showMenu && activeItem) {
 	          this._handleAddOption(activeItem);
 	        }
+	        if (this.props.handleEnterKeyPress) {
+	          this.props.handleEnterKeyPress(options, e);
+	        }
 	        break;
 	    }
 	  },
