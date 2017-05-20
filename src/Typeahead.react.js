@@ -261,7 +261,7 @@ const Typeahead = createReactClass({
   },
 
   render() {
-    const {allowNew, className, dropup, labelKey, paginate} = this.props;
+    const {allowNew, className, dropup, hideMenuIfNoResults, labelKey, paginate} = this.props;
     const {shownResults, text} = this.state;
 
     // First filter the results by the input string.
@@ -571,7 +571,7 @@ const Typeahead = createReactClass({
   },
 
   _handleAddOption(selectedOption) {
-    const {multiple, labelKey, onChange, onInputChange} = this.props;
+    const {multiple, labelKey, menuSelectHandler, onChange, onInputChange} = this.props;
 
     let selected;
     let text;
